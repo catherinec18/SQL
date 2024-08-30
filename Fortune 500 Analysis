@@ -68,3 +68,16 @@ ELSE 'Small'
 END as company_size
 FROM fortune_companies
 ORDER BY company_size;
+
+
+-- How many companies in each industry offer healthcare benefits?
+
+
+
+-- Which companies offer healthcare and also offer at least 12 weeks of maternity leave?
+
+
+-- What is the average PTO amongst all industries?
+
+
+-- How many companies in each industry have a revenue of at least $200 billion?
