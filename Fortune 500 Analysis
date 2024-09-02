@@ -58,7 +58,7 @@ VALUES
 
 
 
--- Group together the companies based off of size (small, medium, large)
+-- Group together the companies based on size (small, medium, large)
 
 SELECT company_name, employees,
 CASE
@@ -70,14 +70,32 @@ FROM fortune_companies
 ORDER BY company_size;
 
 
--- How many companies in each industry offer healthcare benefits?
+-- Which industries have more than one company that offers healthcare benefits?
 
+SELECT industry, COUNT(healthcare_benefits=1) AS companies_with_healthcare
+FROM fortune_companies
+WHERE healthcare_benefits=1
+GROUP BY industry
+HAVING companies_with_healthcare>1;
 
 
 -- Which companies offer healthcare and also offer at least 12 weeks of maternity leave?
 
+SELECT company_name, healthcare_benefits, maternity_leave_weeks
+FROM fortune_companies
+WHERE healthcare_benefits=1
+AND maternity_leave_weeks>=12;
 
--- What is the average PTO amongst all industries?
+-- What is the average PTO for each industry?
+
+SELECT industry, ROUND(AVG(paid_time_off_days),1) AS average_pto
+FROM fortune_companies
+GROUP BY industry;
 
 
 -- How many companies in each industry have a revenue of at least $200 billion?
+
+SELECT industry, COUNT(revenue>=200) 
+FROM fortune_companies
+WHERE revenue>=200
+GROUP BY industry;
